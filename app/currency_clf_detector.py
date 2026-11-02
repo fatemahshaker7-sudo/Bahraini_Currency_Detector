@@ -11,7 +11,7 @@ mode = st.radio("Choose input", ["Live camera", "Upload photo"], horizontal=True
 if mode == "Live camera":
     run = st.checkbox("Start camera")
     frame_box = st.empty()
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     while run:
         ret, frame = cap.read()
         if not ret:
