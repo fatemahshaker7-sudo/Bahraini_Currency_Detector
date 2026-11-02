@@ -60,7 +60,6 @@ Bahraini_Currency_Detector/
 | 3   | [10 BD]      | [Ten-dinar note]                     |
 | 4   | [20 BD]      | [Twenty-dinar note]                  |
 
-[Replace this table with the exact class names from the `names` list in your `data.yaml`. Add coins if the dataset includes them.]
 
 ### Model and app files
 
