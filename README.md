@@ -30,7 +30,7 @@ Bahraini_Currency_Detector/
 │   ├── best.pt                    # trained YOLO weights used by the app
 │   └── requirements.txt
 ├── Code/                          # training and evaluation notebook
-│   └── [Bahraini_Currency_Training.ipynb]
+│   └── bahraini_currency_classification_datection.py
 └── images/                        # images
 ```
 
