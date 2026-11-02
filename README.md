@@ -54,7 +54,7 @@ Bahraini_Currency_Detector/
 
 | ID  | Class name   | Description                          |
 |-----|--------------|--------------------------------------|
-| 0   | [500 fils]   | [Half-dinar note]                    |
+| 0   | [0.5 BD]     | [Half-dinar note]                    |
 | 1   | [1 BD]       | [One-dinar note]                     |
 | 2   | [5 BD]       | [Five-dinar note]                    |
 | 3   | [10 BD]      | [Ten-dinar note]                     |
