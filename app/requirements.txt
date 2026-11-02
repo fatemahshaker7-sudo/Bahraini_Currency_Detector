@@ -1,4 +1,7 @@
-streamlit
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
 ultralytics
+streamlit
 opencv-python-headless
 pillow
