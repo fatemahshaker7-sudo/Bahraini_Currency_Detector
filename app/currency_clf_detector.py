@@ -2,26 +2,30 @@ import os
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image, ImageOps
+import cv2
 
-model_path = os.path.join(os.path.dirname(__file__), "best.pt")
-
-@st.cache_resource
-def load_model():
-    return YOLO(model_path)
-
-model = load_model()
-
+model = YOLO(os.path.join(os.path.dirname(__file__), "best.pt"))
 st.title("Bahraini Currency Detector")
+mode = st.radio("Choose input", ["Live camera", "Upload photo"], horizontal=True)
 
-camera_photo = st.camera_input("Take a photo")
-uploaded_photo = st.file_uploader("Or upload a photo", type=["jpg", "jpeg", "png"])
+if mode == "Live camera":
+    run = st.checkbox("Start camera")
+    frame_box = st.empty()
+    cap = cv2.VideoCapture(0)
+    while run:
+        ret, frame = cap.read()
+        if not ret:
+            st.error("Could not read from the camera.")
+            break
+        results = model(frame)                 # prediction
+        annotated_frame = results[0].plot()    # draw boxes
+        frame_box.image(annotated_frame, channels="BGR")  # show in the app
+    cap.release()
 
-file = camera_photo or uploaded_photo
-
-if file:
-    image = ImageOps.exif_transpose(Image.open(file)).convert("RGB")
-
-    results = model(image)
-    annotated_frame = results[0].plot()
-
-    st.image(annotated_frame[:, :, ::-1])  # BGR -> RGB
+else:
+    uploaded_photo = st.file_uploader("Upload a photo", type=["jpg", "jpeg", "png"])
+    if uploaded_photo:
+        image = ImageOps.exif_transpose(Image.open(uploaded_photo)).convert("RGB")
+        results = model(image)
+        annotated_frame = results[0].plot()
+        st.image(annotated_frame[:, :, ::-1])  # BGR -> RGB
